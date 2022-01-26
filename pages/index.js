@@ -17,7 +17,6 @@ const Home = () => {
 
   const loadNfts = async () => {
     const provider = new ethers.providers.JsonRpcProvider()
-    console.log(provider)
     const tokenContract = new ethers.Contract(
       nftaddress, 
       NFT.abi, 
@@ -45,6 +44,7 @@ const Home = () => {
         name: meta.data.name,
         description: meta.data.description
       }
+      console.log(item)
       return item
     }))
     setNfts(items)
@@ -52,6 +52,7 @@ const Home = () => {
   }
 
   const buyNft = async (nft) => {
+    console.log(nft)
     const web3modal = new Web3Modal()
     const connection = await web3modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -80,7 +81,7 @@ const Home = () => {
   return (
     <div className="flex justify-center">
       <div className="px-4" style={{maxwidth: "1600px"}}>
-        <div classname="grid grid-flow-col-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {nfts.map((nft, i) => {
             return (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
@@ -97,8 +98,8 @@ const Home = () => {
                   <p className="text-2xl mb-4 font-bold text-white">
                     {nft.price} ETH
                   </p>
-                  <button classname="w-full rounded bg-pink-500 text-white font-bold py-2 px-12"
-                   onClick={(nft) => buyNft(nft)}>
+                  <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
+                   onClick={() => {buyNft(nft)}}>
                     Buy
                   </button>
                 </div>
