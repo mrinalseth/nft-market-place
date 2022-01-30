@@ -16,7 +16,15 @@ const Home = () => {
   }, [])
 
   const loadNfts = async () => {
-    const provider = new ethers.providers.JsonRpcProvider()
+    // const provider = new ethers.providers.JsonRpcProvider()
+    // const provider = new ethers.providers.InfuraProvider(
+    //   "rinkeby",
+    //   "https://rinkeby.infura.io/v3/e2d7fe2772d442c0aeca9420622619e7"
+    // )
+    // const provider = new ethers.providers.Web3Provider(web3modal.cur)
+    const web3modal = new Web3Modal()
+    const connection = await web3modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
     const tokenContract = new ethers.Contract(
       nftaddress, 
       NFT.abi, 

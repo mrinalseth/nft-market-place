@@ -23,7 +23,7 @@ module.exports = {
     hardhat: {
       chainId: 1337,
     },
-    mumbai: {
+    rinkeby: {
       url: `https://rinkeby.infura.io/v3/${projectId}`,
       accounts: [privateKey]
     },
