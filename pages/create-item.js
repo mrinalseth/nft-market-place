@@ -14,6 +14,7 @@ const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const CreateItem = () => {
 
     const [fileUrl, setFileUrl] = useState(null)
+    const [msg, setMsg] = useState("Create Digital Asset")
     const [formInput, setFormInput] = useState({
         price: "",
         name: "",
@@ -40,6 +41,7 @@ const CreateItem = () => {
     }
 
     const createItem = async () => {
+        setMsg("Loading...")
         const {name, price, description} = formInput
         if (!name || !description || !price || !fileUrl) {
             return
@@ -53,6 +55,7 @@ const CreateItem = () => {
             const added = await client.add(data)
             const url = `https://ipfs.infura.io/ipfs/${added.path}`
             createSale(url)
+            
         }catch (err) {
             console.log(err)
         }
@@ -79,6 +82,7 @@ const CreateItem = () => {
             nftaddress, tokenId, price, {value: listingPrice}
         )
         await transaction.wait()
+        setMsg("Create Digital Asset")
         router.push('/')
     }
 
@@ -128,7 +132,7 @@ const CreateItem = () => {
                 className="font-bold mt-4 bg-gray-900
                 text-white rounded p-4 shadow-lg"
 
-                >Create Digital Asset</button>
+                >{msg}</button>
             </div>
         </div>
     )

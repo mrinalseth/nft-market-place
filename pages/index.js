@@ -16,15 +16,9 @@ const Home = () => {
   }, [])
 
   const loadNfts = async () => {
-    // const provider = new ethers.providers.JsonRpcProvider()
-    // const provider = new ethers.providers.InfuraProvider(
-    //   "rinkeby",
-    //   "https://rinkeby.infura.io/v3/e2d7fe2772d442c0aeca9420622619e7"
-    // )
-    // const provider = new ethers.providers.Web3Provider(web3modal.cur)
-    const web3modal = new Web3Modal()
-    const connection = await web3modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
+
+    const provider = new ethers.providers.getDefaultProvider("https://rinkeby.infura.io/v3/15c1d32581894b88a92d8d9e519e476c")
+
     const tokenContract = new ethers.Contract(
       nftaddress, 
       NFT.abi, 
@@ -92,8 +86,8 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {nfts.map((nft, i) => {
             return (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+              <div key={i} className=" border shadow rounded-xl overflow-hidden">
+                <img src={nft.image} className="w-full p-5 " />
                 <div className="p-4">
                   <p style={{height: "64px"}} className="text-2xl font-semibold">
                     {nft.name}
@@ -106,7 +100,7 @@ const Home = () => {
                   <p className="text-2xl mb-4 font-bold text-white">
                     {nft.price} ETH
                   </p>
-                  <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
+                  <button className="w-full bg-gray-400 text-black font-bold py-2 px-12 rounded"
                    onClick={() => {buyNft(nft)}}>
                     Buy
                   </button>
