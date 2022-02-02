@@ -17,7 +17,7 @@ const Home = () => {
 
   const loadNfts = async () => {
 
-    const provider = new ethers.providers.getDefaultProvider("https://rinkeby.infura.io/v3/15c1d32581894b88a92d8d9e519e476c")
+    const provider = new ethers.providers.getDefaultProvider("https://rinkeby.infura.io/v3/8bc383e1186645dcbcc6c3e2c251fe9c")
 
     const tokenContract = new ethers.Contract(
       nftaddress, 

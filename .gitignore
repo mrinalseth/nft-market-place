@@ -45,3 +45,6 @@ artifacts
 
 # private keys
 .secret
+
+# contract adddress
+.config.js
